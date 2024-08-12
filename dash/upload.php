@@ -22,7 +22,7 @@ if (array_key_exists("id", $_POST)) {
     $stmt->bind_param("sssss", $_POST["title"], $_POST["content"], $_POST["link_href"], $_POST["id"], $_SESSION["username"]);
     echo "<p>Update request sent</p>";
 } else {
-    if (isset($_FILES["upload"])) {
+    if ($_FILES["upload"]['tmp_name'] != "") {
         $filepath = $_FILES['upload']['tmp_name'];
         $fileSize = filesize($filepath);
         $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -46,7 +46,7 @@ if (array_key_exists("id", $_POST)) {
             $filename = sha1(microtime(true) . sha1_file($filepath));
             $extension = $allowedTypes[$filetype];
 
-            $targetDirectory = __DIR__ . "\\..\\uploads";
+            $targetDirectory = __DIR__ . ".\\..\\uploads";
             $newFilepath = $targetDirectory . "\\" . $filename . "." . $extension;
 
             if (!copy($filepath, $newFilepath )) {

@@ -11,7 +11,7 @@ $results = $stmt->get_result();
 
 if ($results->num_rows > 0) {
     $data = $results->fetch_assoc();
-    if ($data["password"] == hash("sha256", $_POST["password"])) {
+    if (password_verify($_POST["password"], $data["password"])) {
         $_SESSION["username"] = $data["username"];
         header("location: index.php");
     } else {

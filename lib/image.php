@@ -3,7 +3,7 @@
 function webpImage($source, $quality = 100, $removeOld = false)
 {
     $name = sha1(microtime(true) . sha1_file($source)) . '.webp';
-    $destination = __DIR__ . "\\..\\uploads\\" . $name;
+    $destination = "../uploads/" . $name;
     $info = getimagesize($source);
     $isAlpha = false;
 
