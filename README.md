@@ -24,6 +24,6 @@ create table users
 (
     username char(16) not null
         primary key,
-    password char(64) not null
+    password char(128) not null
 );
 ```
